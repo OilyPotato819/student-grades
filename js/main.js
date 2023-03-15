@@ -51,60 +51,85 @@ function mainMenu() {
 // ******************************************************
 function firstTo40() {
   // Set the grade of the first student to 40.
-  outputEl.innerHTML = "First grade to 40";
+  grades[0] = 40;
 }
 
 function lastTo50() {
   // Set the grade of the last student to 50.
   // Your code should work for any size of array.
-  outputEl.innerHTML = "Last grade to 50";
+  grades[grades.length - 1] = 50;
 }
 
 function randomTo100() {
   // Set the grade of a random student to 100.
   // Your code should work for any size of array.
-  outputEl.innerHTML = "Random grade to 100";
+  const randNum = Math.floor(Math.random() * grades.length);
+  grades[randNum] = 100;
 }
 
 function addRandomGrade() {
   // Add a random grade between 0 and 100 to the end of the array.
-  outputEl.innerHTML = "Add random grade";
+  const randNum = Math.floor(Math.random() * 101);
+  grades.push(randNum);
 }
 
 function removeLastGrade() {
   // Remove the last grade.
-  outputEl.innerHTML = "Remove the last grade";
+  grades.pop();
 }
 
 function displayStats() {
   // Determine the maximum grade, minimum grade and average grade.
   // Output the results.
-  outputEl.innerHTML = "Stats: max, min, average";
+  const max = Math.max(...grades);
+  const min = Math.min(...grades);
+  const average = (grades.reduce((total, n) => (total += n)) / grades.length).toFixed(0);
+
+  outputEl.innerHTML = `<b>Stats</b><br>
+  Max: ${max}<br>
+  Min: ${min}<br>
+  Average: ${average}`;
 }
 
 function countBelow50() {
   // Count how many grades are below 50.  Output the result.
-  outputEl.innerHTML = "Count grades below 50";
+  let count = 0;
+  for (let i = 0; i < grades.length; i++) {
+    if (grades[i] < 50) count++;
+  }
+
+  outputEl.innerHTML = count;
 }
 
 function lowGradesTo50() {
   // Change all grades that are below 50 to be equal to 50.
-  outputEl.innerHTML = "Change low grades to 50";
+  for (let i = 0; i < grades.length; i++) {
+    if (grades[i] < 50) grades[i] = 50;
+  }
 }
 
 function increaseGradesBy10() {
   // Increase each grade by 10%.
-  outputEl.innerHTML = "Increase all grades by 10%";
+  for (let i = 0; i < grades.length; i++) {
+    grades[i] *= 1.1;
+  }
 }
 
 function decreaseGradesBy10() {
   // Decrease each grade by 10%.
-  outputEl.innerHTML = "Decrease all grades by 10%";
+  for (let i = 0; i < grades.length; i++) {
+    grades[i] *= 0.9;
+  }
 }
 
 function removeBelow50() {
   // Remove ALL grades that are below 50.
-  outputEl.innerHTML = "Remove all grades below 50";
+  for (let i = 0; i < grades.length; i++) {
+    if (grades[i] < 50) {
+      console.log(grades.splice(i, 1));
+      i--;
+    }
+  }
 }
 
 // ******************************************************
